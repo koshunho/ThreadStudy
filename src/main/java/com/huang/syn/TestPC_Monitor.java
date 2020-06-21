@@ -2,7 +2,7 @@ package com.huang.syn;
 
 //生产者消费者模型->利用缓冲区解决：管程法
 //生产者,消费者,产品,缓冲区
-public class TestPC {
+public class TestPC_Monitor {
     public static void main(String[] args) {
         SynContainer container = new SynContainer();
 
@@ -57,6 +57,10 @@ class Chicken{
 
 /*无论synchronized关键字加在方法上还是对象上，如果它作用的对象是非静态的，则它取得的锁是对象；
 如果synchronized作用的对象是一个静态方法或一个类，则它取得的锁是对类，该类所有的对象同一把锁。*/
+
+//wait():将当.前.线.程.持有对象的锁交出（允许其他线程持有），并进入等待状态。
+//notify():唤醒某一个正在等待的线程（由某一个正在等待的线程获取锁）。
+//notifyAll():通知所有正在等待的线程（所有正在等待的线程争夺一个锁），由jvm决定唤醒哪一个。
 class SynContainer{
     //容器大小
     Chicken[] arr = new Chicken[10];
