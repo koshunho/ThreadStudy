@@ -16,7 +16,14 @@ public class TestCallableByFutureWork {
 
         FutureTask<Integer> futureTask = new FutureTask<>(myThread);
 
+        /*
+        输出结果：
+        你爹's call()
+        5464
+        */
+        //只打印出一个call()。因为结果会被缓存！
         new Thread(futureTask,"你爹").start();
+        new Thread(futureTask,"你妈").start();
 
         Integer i = futureTask.get();
 
