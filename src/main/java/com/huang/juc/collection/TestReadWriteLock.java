@@ -1,4 +1,4 @@
-package com.huang.juc;
+package com.huang.juc.collection;
 
 import java.util.HashMap;
 import java.util.Map;

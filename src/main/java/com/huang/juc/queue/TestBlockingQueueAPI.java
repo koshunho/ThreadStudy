@@ -1,4 +1,4 @@
-package com.huang.juc;
+package com.huang.juc.queue;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;

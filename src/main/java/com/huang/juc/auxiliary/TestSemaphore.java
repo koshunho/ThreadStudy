@@ -1,4 +1,4 @@
-package com.huang.juc;
+package com.huang.juc.auxiliary;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;

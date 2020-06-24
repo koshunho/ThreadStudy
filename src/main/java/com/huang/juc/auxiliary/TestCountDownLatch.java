@@ -1,4 +1,4 @@
-package com.huang.juc;
+package com.huang.juc.auxiliary;
 
 import java.util.concurrent.CountDownLatch;
 //线程执行速度不一样，有的快有的慢，部分业务需要等所有线程结束后才能处理后面的逻辑。所以就用CountdownLatch
