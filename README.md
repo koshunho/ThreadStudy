@@ -111,3 +111,32 @@ Java stack information for the threads listed above:
 Found 1 deadlock.
 
 ```
+
+### 3.相关面试题
+1.线程状态？
+
+ - NEW:尚未启动
+ - RUNNABLE:正在执行中
+ - BLOCKED:阻塞的
+ - WAITING:永久等待状态
+ - TIME_WAITING:等待指定时间重新被唤醒的状态
+ - TERMINATED:执行完成
+   
+2.线程池状态？
+ - RUNNING: 正常的状态，接受新的任务，处理等待队列中的任务
+ - SHUTDOWN:不接受新的任务提交，但会继续处理等待队列中的任务
+ - STOP:不接受新的任务提交，不再处理等待队列中的任务，中断正在执行的任务
+ - TIDYING:所有任务都销毁了，workCount为0，线程池的状态在转换为TIDYING状态时，会执行钩子方法terminated()
+ - TERMINATED:terminated()方法结束后，线程池的状态就会变成这个
+
+3.线程池中 submit() 和 execute() 有什么区别？
+
+execute()：只能执行Runnable类型的任务
+
+submit():可以执行Runnable和Callable类型的任务。**submit()执行后有返回值**
+
+4.ThreadLocal是什么？
+看TestThreadLocal
+
+5.说一下synchronized底层实现原理？
+synchronized是由一对 **monitorenter/monitorexit** 指令实现的，monitor对象是同步的基本实现单元。
