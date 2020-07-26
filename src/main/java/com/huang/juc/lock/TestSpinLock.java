@@ -9,7 +9,7 @@ public class TestSpinLock {
         new Thread(()->{
             spinLock.myLock();
             try {
-                TimeUnit.SECONDS.sleep(2);
+                TimeUnit.MILLISECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
@@ -22,7 +22,7 @@ public class TestSpinLock {
         new Thread(()->{
             spinLock.myLock();
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {

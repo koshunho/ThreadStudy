@@ -10,9 +10,9 @@ public class TestVolatile {
         /*这里有两个线程。一个是new Thread，一个main线程
         测试加没加volatile前后的效果*/
         // volatile可保证数据的同步，也就是可见性
-        // testVisibility();
+         testVisibility();
 
-        testAtomicity();
+        // testAtomicity();
     }
 
     private static void testVisibility(){
@@ -27,7 +27,6 @@ public class TestVolatile {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         num = 1;
 
         System.out.println(num);

@@ -21,6 +21,7 @@ public class TestCyclicBarrier {
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
+                System.out.println("第" + temp + "线程结束了");
             }).start();
         }
     }

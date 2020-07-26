@@ -8,6 +8,7 @@ public class TestPC_Monitor {
 
         new Producer(container).start();
         new Consumer(container).start();
+        new Consumer(container).start();
     }
 }
 
@@ -36,7 +37,7 @@ class Consumer extends Thread{
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             System.out.println("消费了--->第"+container.pop().id+"只鸡");
         }
     }
@@ -70,7 +71,7 @@ class SynContainer{
     //生产者放入产品
     public synchronized void push(Chicken chicken) {
         //如果容器满了，需要等待消费者消费
-        if(count == arr.length){
+        while(count == arr.length){
             //通知消费者消费，生产等待
             try {
                 this.wait();
@@ -89,7 +90,7 @@ class SynContainer{
     //消费者消费产品
     public synchronized Chicken pop()  {
         //判断能否消费
-        if(count == 0){
+        while(count == 0){
             //等待生产者生产，消费者等待
             try {
                 this.wait();
@@ -106,3 +107,16 @@ class SynContainer{
         return chicken;
     }
 }
+/*2020.7.23更新
+*
+*
+* 假设有2个消费者
+*
+消费了--->第0只鸡
+生产了第0只鸡
+生产了第1只鸡
+消费了--->第1只鸡
+消费了--->第2只鸡
+生产了第2只鸡
+*
+* 第1只鸡怎么在生产前就消费了？？？？？*/

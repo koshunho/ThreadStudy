@@ -12,14 +12,25 @@ import java.util.concurrent.Executors;
 // 三大方法，七大参数
 public class TestCreateThreadPoolByExecutors {
     public static void main(String[] args) {
-        //TestNewSingleThreadExecutor();
+        TestNewSingleThreadExecutor();
 
-        //TestNewFixedThreadPool();
+        // TestNewFixedThreadPool();
 
-        TestNewCachedThreadPool();
+        // TestNewCachedThreadPool();
     }
 
-    /*只有一个线程*/
+    // 只有一个线程
+/*    输出结果：
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务*/
     private static void TestNewSingleThreadExecutor(){
         ExecutorService threadPool = Executors.newSingleThreadExecutor();
 
@@ -38,6 +49,17 @@ public class TestCreateThreadPoolByExecutors {
     }
 
     //执行长期任务性能好，创建一个线程池，一个池中有N个固定的线程，有固定线程数的线程
+/*  输出结果：
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-2 办理业务
+    pool-1-thread-3 办理业务
+    pool-1-thread-4 办理业务
+    pool-1-thread-5 办理业务*/
     private static void TestNewFixedThreadPool(){
         //池子大小 5
         ExecutorService threadPool = Executors.newFixedThreadPool(5);
@@ -56,7 +78,19 @@ public class TestCreateThreadPoolByExecutors {
         }
     }
 
-    //执行很多短期异步任务，线程池根据需要创建新县城，但在 先构建的线程可用时 将 重用他们。遇强则强遇弱则弱
+    //执行很多短期异步任务，线程池根据需要创建新线程，但在 先构建的线程可用时 将 重用他们。遇强则强遇弱则弱
+    /*  输出结果：
+    pool-1-thread-1 办理业务
+    pool-1-thread-1 办理业务
+    pool-1-thread-2 办理业务
+    pool-1-thread-3 办理业务
+    pool-1-thread-1 办理业务
+    ....
+    pool-1-thread-34 办理业务
+    pool-1-thread-35 办理业务
+    pool-1-thread-36 办理业务
+
+    Process finished with exit code 0*/
     private static void TestNewCachedThreadPool(){
         //一池N线程，可扩容伸缩
         ExecutorService threadPool = Executors.newCachedThreadPool();
@@ -74,5 +108,4 @@ public class TestCreateThreadPoolByExecutors {
             threadPool.shutdown();
         }
     }
-
 }
