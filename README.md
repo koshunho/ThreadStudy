@@ -1040,7 +1040,7 @@ ForkJoin有一个`工作窃取`的概念。就是一个工作线程下会维护�
 
 工作窃取（work-stealing）算法是指某个线程从其他队列里**窃取任务**来执行。
 
-![工作窃取](http://qcorkht4q.bkt.clouddn.com/blog1595523139904.png)
+![工作窃取](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595523139904.png)
 
 简单理解，就是能者多劳！
 
@@ -1175,7 +1175,7 @@ public class Test {
 效率是ForkJoin和普通线程的十倍以上
 
 ##### 19.异步调用
-![](http://qcorkht4q.bkt.clouddn.com/blog1595585325363.png)
+![](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595585325363.png)
 
 当我们需要调用一个函数方法时。如果这个函数执行很慢,那么我们就要进行等待。但有时候,我们可能并不急着要结果。
 因此,我们可以让被调用者立即返回,让他在后台慢慢处理这个请求。对于调用者来说,则可以先处理一些其他任务,在真正需要数据的场合再去尝试获取需要的数据。
@@ -1275,21 +1275,21 @@ public class TestBook {
 1. 串行执行
    任务串行执行，下一个任务必须等待上一个任务完成才可以继续执行
    
-   ![串行关系](http://qcorkht4q.bkt.clouddn.com/blog1595583109123.png)
+   ![串行关系](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595583109123.png)
    
-   ![四组接口](http://qcorkht4q.bkt.clouddn.com/blog1595583228967.png)
+   ![四组接口](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595583228967.png)
    
 2. AND 汇聚关系
    AND 汇聚关系代表所有任务完成之后，才能进行下一个任务。
 
-   ![AND](http://qcorkht4q.bkt.clouddn.com/blog1595583397197.png)
+   ![AND](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595583397197.png)
    
-   ![四组接口](http://qcorkht4q.bkt.clouddn.com/blog1595583419320.png)
+   ![四组接口](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595583419320.png)
    
 3. OR 汇聚关系
    OR 汇聚关系代表只要多个任务中任一任务完成，就可以接着接着执行下一任务。
    
-   ![四组接口](http://qcorkht4q.bkt.clouddn.com/blog1595583471824.png)
+   ![四组接口](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595583471824.png)
    
    ..........
 
@@ -1350,9 +1350,9 @@ JMM规定了内存主要划分为**主内存**和**工作内存**两种。此处
 
 各线程的工作内存间彼此独立，互不可见。
 
-![JMM8种操作](http://qcorkht4q.bkt.clouddn.com/blogJMM8种操作.png)
+![JMM8种操作](https://raw.githubusercontent.com/koshunho/koshunhopic/master//blogJMM8种操作.png)
 
-![没有可见性](http://qcorkht4q.bkt.clouddn.com/blog没有可见性.png)
+![没有可见性](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog没有可见性.png)
 
 线程A感知不到线程B操作了值的变化！如何能够保证线程间可以同步感知这个问题呢？只需要使用`volatile`关键字！volatile 保证线程间变量的可见性，简单地说就是当线程A对变量X进行了修改后，在线程A后面执行的其他线程能看到变量X的变动，更详细地说是要符合以下两个规则 ：
 - 线程对变量进行修改之后，要立刻回写到主内存。
@@ -1458,7 +1458,7 @@ public class TestVolatile {
 ```
 num++是非原子性操作！
 
-![i++](http://qcorkht4q.bkt.clouddn.com/blog1595600327035.png)
+![i++](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595600327035.png)
 
 
 对unsafeAdd加锁，可以解决。还有其他办法吗？`Atomic`原子类
@@ -1574,7 +1574,7 @@ public class VolatileExample {
 }
 ```
 
-![指令重排](http://qcorkht4q.bkt.clouddn.com/blog1595601268484.png)
+![指令重排](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595601268484.png)
 
 原理：**内存屏障**
 
@@ -1584,7 +1584,7 @@ public class VolatileExample {
 
 由于编译器和处理器都能执行指令重排优化。如果在指令间插入一条 Memory Barrier 则会告诉编译器和CPU，不管什么指令都不能和这条 Memory Barrier 指令重排序，也就是说，通过插入内存屏障禁止在**内存屏障`前后`的指令**执行重排序优化。内存屏障另外一个作用是强制刷出各种CPU的缓存数据，因此任何CPU上的线程都能读取到这些数据的最新版本。
 
-![](http://qcorkht4q.bkt.clouddn.com/blog1595601663226.png)
+![](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595601663226.png)
 
 内存屏障 --->简而言之，禁止上面的指令和下面的指令顺序交换
 
@@ -1622,9 +1622,9 @@ public final int getAndIncrement() { // 继续走源码
 return unsafe.getAndAddInt(this, valueOffset, 1); 
 } 
 ```
-![value](http://qcorkht4q.bkt.clouddn.com/blog1595755728834.png)
+![value](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595755728834.png)
 
-![getAndAddInt](http://qcorkht4q.bkt.clouddn.com/blog1595755448314.png)
+![getAndAddInt](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595755448314.png)
 
 ```java
 public final int getAndAddInt(Object var1, long var2, int var4) { 
@@ -1820,7 +1820,7 @@ T2-> myUnlock
 
 死锁是指两个或两个以上的进程在执行过程中，因争夺资源而造成的一种互相等待的现象。
 
-![死锁](http://qcorkht4q.bkt.clouddn.com/blog1595764863627.png)
+![死锁](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595764863627.png)
 
 产生死锁的4大条件：
 1. 互斥条件：一个资源每次只能被一个进程使用。
@@ -1838,6 +1838,6 @@ T2-> myUnlock
 2. 使用 `jps -l` 命令定位进程号
 3. 使用 `jstack 进程号` 找到死锁查看
    
-![定位进程号](http://qcorkht4q.bkt.clouddn.com/blog1595765532461.png)
+![定位进程号](https://raw.githubusercontent.com/koshunho/koshunhopic/master//blog1595765532461.png)
 
-![查看堆栈信息](http://qcorkht4q.bkt.clouddn.com/blog1595765585881.png)
+![查看堆栈信息](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595765585881.png)
