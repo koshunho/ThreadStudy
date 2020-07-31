@@ -376,11 +376,11 @@ Thread的构造函数里就有Runnable，他们能直接联系。但是Callable�
 
 于是这时候就想到适配器模式，有什么适配器实现了Runnable又可以调用Callable呢？
 
-![RunnableFuture](http://qcorkht4q.bkt.clouddn.com/blog1595433284932.png)
+![RunnableFuture](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595433284932.png)
 
 RunnableFuture接口继承了Runnable
 
-![FutureTask](http://qcorkht4q.bkt.clouddn.com/blog1595433338875.png)
+![FutureTask](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595433338875.png)
 
 RunnableFuture有一个实现类FutureTask。**说明FutureTask就是一个Runnable**
 **说明FutureTask就是一个Runnable**
@@ -708,9 +708,9 @@ class MyCache{
 
 往线程池中提交线程的时候其实有两种方法，一种是`execute`另外一种是`submit`。
 
-![execute](http://qcorkht4q.bkt.clouddn.com/blog1595578698685.png)
+![execute](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595578698685.png)
 
-![submit](http://qcorkht4q.bkt.clouddn.com/blog1595578620156.png)
+![submit](https://raw.githubusercontent.com/koshunho/koshunhopic/master/blog1595578620156.png)
 
 `execute`: execute提交的方式只能提交一个Runnable的对象，且该方法的返回值是void，也即是提交后如果线程运行后，和主线程就脱离了关系了，当然可以设置一些变量来获取到线程的运行结果。并且当线程的执行过程中抛出了异常通常来说主线程也无法获取到异常的信息的，只有通过ThreadFactory主动设置线程的异常处理类才能感知到提交的线程中的异常信息。
 
@@ -888,7 +888,7 @@ ThreadPoolExecutor.CallerRunsPolicy //由调用线程处理该任务
 ```
 
 ###### ThreadPoolExecutor 原理
-![流程](http://qcorkht4q.bkt.clouddn.com/ThreadPoolExecutor.png)
+![流程](https://raw.githubusercontent.com/koshunho/koshunhopic/master/ThreadPoolExecutor.png)
 
 举例：8个人进银行办理业务
 1. 1~2人被受理（核心大小core） 
@@ -912,7 +912,7 @@ ThreadPoolExecutor.CallerRunsPolicy //由调用线程处理该任务
  
  Executor中JDK都给你提供了，为什么不用？
  
- ![为什么不用Executors](http://qcorkht4q.bkt.clouddn.com/%E4%B8%8D%E5%85%81%E8%AE%B8%E4%BD%BF%E7%94%A8Executors.png)
+ ![为什么不用Executors](https://raw.githubusercontent.com/koshunho/koshunhopic/master/%E4%B8%8D%E5%85%81%E8%AE%B8%E4%BD%BF%E7%94%A8Executors.png)
  
  ###### 线程是否越多越好？
  
