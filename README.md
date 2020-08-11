@@ -871,11 +871,17 @@ public class TestCreateThreadPoolByExecutors {
     }
 ```
 `corePoolSize`：核心线程数。当线程池中的数目到达corePoolsSize后，会把到达的任务放到缓存队列(BlockingQueue)当中
+
 `maximumPoolSize`:最大线程数。表明线程中最多能够创建的线程数量
+
 `keepAliveTime`:**空闲线程**保留时间（就是 最大线程 - 核心线程 = 空闲线程）
+
 `TimeUnit`:空闲线程的保留时间单位
+
 `BlockingQueue<Runnable>`:阻塞队列，存储等待执行的任务。参数有ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue可选
+
 `threadFactory`:线程工厂，用来创建线程，默认即可
+
 `RejectedExecutionHandler`:队列已满，而且任务量大于最大线程的异常处理策略
 ```java
 ThreadPoolExecutor.AbortPolicy //丢弃任务并抛出RejectedExecutionException异常。 
@@ -933,22 +939,39 @@ int processors = Runtime.getRuntime().availableProcessors(); //获得CPU的内�
 特别注意`map()`，这个时候泛型可能已经发生了转换！后面的操作都是针对转换后的泛型的了！
 
 最重要一定死死记住，new 函数型接口 用lambda表示`() -> {}`。{}里面注意要不要写`return  xxx;`!!!
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}` {}里面注意要不要写`return  xxx;`
+
 `() -> {}`
+
 `() -> {}`
+
 `() -> {}`
+
 `() -> {}`
+
 `() -> {}`
+
 `() -> {}`
+
 `() -> {}`
+
 `() -> {}`
+
 `() -> {}`
 
 举例，Arrays.sort(arr, (o1, o2) -> {return o2 - o1;}); 
@@ -956,8 +979,11 @@ int processors = Runtime.getRuntime().availableProcessors(); //获得CPU的内�
 再简化！Arrays.sort(arr, (o1, o2)-> o2 - o1);
 
 return xxx; 的`;`千万不要忘记呀!!!!!只要去掉{}才可以不写`;`!!!!!!!
+
 return xxx; 的`;`千万不要忘记呀!!!!!只要去掉{}才可以不写`;`!!!!!!!
+
 return xxx; 的`;`千万不要忘记呀!!!!!只要去掉{}才可以不写`;`!!!!!!!
+
 return xxx; 的`;`千万不要忘记呀!!!!!只要去掉{}才可以不写`;`!!!!!!!
 
 Function的泛型`<T,R>`，T是参数类型，R是返回值！符合逻辑 先输出，再返回
@@ -1031,11 +1057,17 @@ Fork: 任务切分
 Join: 任务合并
 
 ForkJoin有一个`工作窃取`的概念。就是一个工作线程下会维护一个包含多个子任务的**双端队列**。而对于每个工作线程来说，会从头部到尾部依次执行任务。这时，总会有一些线程执行的速度较快，很快就把所有任务消耗完了。那这个时候怎么办呢，总不能空等着吧，多浪费资源。
+
 **双端队列**
+
 **双端队列**
+
 **双端队列**
+
 **双端队列**
+
 **双端队列**
+
 **双端队列**
 
 工作窃取（work-stealing）算法是指某个线程从其他队列里**窃取任务**来执行。
@@ -1409,23 +1441,6 @@ public class TestVolatile {
         testAtomicity();
     }
 
-    private static void testVisibility(){
-        new Thread(()->{
-            while(num == 0){
-            //故意死循环
-            }
-        }).start();
-
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        num = 1;
-
-        System.out.println(num);
-    }
-
     private static void testAtomicity(){
 
         for (int i = 1; i <= 20; i++) {
@@ -1612,13 +1627,13 @@ CAS: Compare-And-Swap
 
 ```java
 atomicInteger.getAndIncrement(); // 分析源码，如何实现的 i++ 安全的问题 
+```
 
 ```java
-atomicInteger.getAndIncrement(); // 分析源码，如何实现的 i++ 安全的问题 
 public final int getAndIncrement() { // 继续走源码 
 // this 当前对象 
 // valueOffset 内存偏移量，内存地址 
-// 1.固定写死 
+// 1 固定写死 
 return unsafe.getAndAddInt(this, valueOffset, 1); 
 } 
 ```
@@ -1630,7 +1645,7 @@ return unsafe.getAndAddInt(this, valueOffset, 1);
 public final int getAndAddInt(Object var1, long var2, int var4) { 
 int var5; 
 do {
-// 获取传入对象的地址 
+// 获取对象中offset偏移地址对应的整型field的值
 var5 = this.getIntVolatile(var1, var2); 
 // 比较并交换，如果var1，var2 还是原来的 var5，就执行var5 =  var5 + var4
 } while(!this.compareAndSwapInt(var1, var2, var5, var5 + var4)); 
@@ -1662,17 +1677,21 @@ UnSafe是CAS的核心类，由于Java方法无法直接访问底层系统，需�
 
 ABA问题带来的危害：
 小明在提款机，提取了50元，因为提款机问题，有两个线程，同时把余额从100变为50
+
 线程1（提款机）：获取当前值100，期望更新为50，
+
 线程2（提款机）：获取当前值100，期望更新为50，
+
 线程1成功执行，线程2某种原因block了，这时，某人给小明汇款50
-线程3（默认）：获取当前值50，期望更新为100，
-这时候线程3成功执行，余额变为100，
-线程2从Block中恢复，获取到的也是100，compare之后，继续更新余额为50！！！
+
+线程3（默认）：获取当前值50，期望更新为100，这时候线程3成功执行，余额变为100，线程2从Block中恢复，获取到的也是100，compare之后，继续更新余额为50！！！
+
 此时可以看到，实际余额应该为100（100-50+50），但是实际上变为了50（100-50+50-50）这就是ABA问题带来的成功提交。
 
 解决方法：
 在变量前面加上版本号（时间戳），每次变量更新的时候变量的版本号都+1，即A->B->A就变成了1A->2B->3A。（就是乐观锁）
 
+`AtomicStampedReference`
 `AtomicStampedReference`
 `AtomicStampedReference`
 `AtomicStampedReference`
@@ -1689,6 +1708,7 @@ ABA问题带来的危害：
 ##### 22. 公平锁、非公平锁
 
 公平锁：是指多个线程按照申请锁的顺序来获取锁，类似排队打饭，先来后到。
+
 非公平锁：是指多个线程获取锁的顺序并不是按照申请锁的顺序，有可能后申请的线程比现申请的线程
 
 优先获取锁，在高并发的情况下，有可能会造成优先级反转或者饥饿现象。
